@@ -52,7 +52,7 @@ RESULT=/Users/sam/.handoff/tasks/hd-0611-03.result.md
 
 ## codex 集成
 
-handoff 的 codex 后端基于对 `codex-cli 0.139.0` 的实测调研。关键结论：
+handoff 的 codex backend基于对 `codex-cli 0.139.0` 的实测调研。关键结论：
 
 ### 事件流
 

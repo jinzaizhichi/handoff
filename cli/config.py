@@ -14,7 +14,6 @@ Backend resolution:
   - Resolved backend = types[<type>] (mechanism) + the backend's own fields (data)
   - Deep-merge for mappings; lists are replaced wholesale (not concatenated)
   - The first backend in the user config is the default (dict insertion order).
-    An explicit `default_backend` key is still honoured but not advertised.
 """
 
 from __future__ import annotations
@@ -42,7 +41,7 @@ _USER_CONFIG_TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), "user_confi
 # this list — users CAN override it.
 _DEPRECATED_KEYS = (
     "type_defaults", "backend_types", "backend_template",
-    "fast_backend", "default_model", "pro_model",
+    "fast_backend", "default_model", "pro_model", "default_backend",
 )
 
 _TEMPLATE_URL = "https://github.com/dazuiba/handoff/blob/main/cli/user_config_template.yaml"
@@ -238,10 +237,7 @@ class Config:
 
     @property
     def default_backend(self) -> str:
-        """First backend in the user config, or explicit default_backend key."""
-        explicit = self._user.get("default_backend")
-        if explicit:
-            return explicit
+        """The default backend: first entry in the user config (insertion order)."""
         backends = self._user.get("backends", {})
         if isinstance(backends, dict) and backends:
             return next(iter(backends))

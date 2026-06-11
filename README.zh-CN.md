@@ -147,7 +147,7 @@ handoff init
 
 ## 配置
 
-`handoff init` 生成一份完整的 `~/.handoff/config.yaml`——三个后端，开箱即用。第一个是默认目标。只有 DeepSeek 需要填 token；opus 和 codex 走本机登录态，零配置。
+`handoff init` 生成一份完整的 `~/.handoff/config.yaml`——三个目标，开箱即用。第一个是默认目标。只有 DeepSeek 需要填 token；opus 和 codex 走本机登录态，零配置。
 
 ```yaml
 # ~/.handoff/config.yaml —— handoff init 帮你生成
@@ -190,5 +190,5 @@ env 块全由你书写——你设的每个 key=value 都会在拉起 CLI 前导
 ## 更多
 
 - **[命令参考 →](docs/cli-reference.zh-CN.md)** — `run` / `resume` / `list` / `tail` / `env` / `init` 全部用法，run id 编码与落盘文件布局。
-- **[配置文档 →](docs/configuration.zh-CN.md)** — 机制与数据两层、env 块、`${ENV}` 插值、include、自定义后端。
+- **[配置文档 →](docs/configuration.zh-CN.md)** — 机制与数据两层、env 块、`${ENV}` 插值、include、自定义目标。
 - **[设计说明 →](docs/design.zh-CN.md)** — 为什么 Claude Code 用后台 shell、Codex 用 subagent；RESULT= 协议细节。
