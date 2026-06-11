@@ -17,7 +17,7 @@ No tool-switching, no lost context.
 
 ## Why handoff
 
-If you juggle more than one coding agent, these will sound familiar:
+If you use more than one coding agent, these will sound familiar:
 
 - 💸 **"Claude / Codex: the $20 plan never lasts. The $100 plan costs too much."**<br>
   — Just say: *"Give this task to `/handoff-ds`."* DeepSeek does the work fast and cheap. Save your expensive quota for decisions.
