@@ -1,10 +1,7 @@
 <div align="center">
+<img src="docs/assets/handoff-hero.jpg" width="100%" alt="hero">
 
-# handoff
-**Your coding agents should be collaborating with each other.**
-
-
-<img src="assets/handoff-hero.jpg" width="100%" alt="hero">
+# With **Handoff**, your coding agents can finally collaborate with each other.
 
 
 | From | → Hand off to | Why |
@@ -94,14 +91,14 @@ Dispatching and resuming are the AI's job (`handoff run` / `handoff resume` unde
 <tr>
 <td valign="top">
 
-<!-- assets/list-tui.jpg — ~480px wide — TUI list + detail view, highlight G/C shortcuts -->
-<img src="assets/list-tui.jpg" width="100%" alt="handoff list interactive TUI">
+<!-- docs/assets/list-tui.jpg — ~480px wide — TUI list + detail view, highlight G/C shortcuts -->
+<img src="docs/assets/list-tui.jpg" width="100%" alt="handoff list interactive TUI">
 
 </td>
 <td valign="top">
 
-<!-- assets/tail.jpg — ~480px wide — handoff tail live stream -->
-<img src="assets/tail.jpg" width="100%" alt="handoff tail live follow">
+<!-- docs/assets/tail.jpg — ~480px wide — handoff tail live stream -->
+<img src="docs/assets/tail.jpg" width="100%" alt="handoff tail live follow">
 
 </td>
 </tr>
@@ -116,8 +113,8 @@ Inside Claude Code there's also a zero-cost option: expand the background shell 
 
 Have your agent fire off several tasks in a single message; each runs and completes independently. handoff auto-increments run numbers so they never collide.
 
-<!-- assets/parallel.jpg — ~621px wide — 2–3 background tasks from one message, each with its own RESULT= path -->
-<img src="assets/parallel.jpg" width="621" alt="Parallel dispatch">
+<!-- docs/assets/parallel.jpg — ~621px wide — 2–3 background tasks from one message, each with its own RESULT= path -->
+<img src="docs/assets/parallel.jpg" width="621" alt="Parallel dispatch">
 
 </details>
 

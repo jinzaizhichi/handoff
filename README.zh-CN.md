@@ -1,10 +1,9 @@
 <div align="center">
+<img src="docs/assets/handoff-hero.jpg" width="100%" alt="hero">
 
-# handoff
-**你的 coding agent 们，该互相协作了。**
+# 有了 **Handoff**，你的 coding agent 们终于可以互相协作了。
 
 
-<img src="assets/handoff-hero.jpg" width="100%" alt="hero">
 
 
 | 从 | → 派给 | 为什么 |
@@ -94,14 +93,14 @@ handoff init
 <tr>
 <td valign="top">
 
-<!-- assets/list-tui.jpg — 建议 ~480 宽 — TUI 列表 + 详情视图，圈出 G/C 快捷键 -->
-<img src="assets/list-tui.jpg" width="100%" alt="handoff list 交互式 TUI">
+<!-- docs/assets/list-tui.jpg — 建议 ~480 宽 — TUI 列表 + 详情视图，圈出 G/C 快捷键 -->
+<img src="docs/assets/list-tui.jpg" width="100%" alt="handoff list 交互式 TUI">
 
 </td>
 <td valign="top">
 
-<!-- assets/tail.jpg — 建议 ~480 宽 — handoff tail 实时输出流 -->
-<img src="assets/tail.jpg" width="100%" alt="handoff tail 实时跟踪">
+<!-- docs/assets/tail.jpg — 建议 ~480 宽 — handoff tail 实时输出流 -->
+<img src="docs/assets/tail.jpg" width="100%" alt="handoff tail 实时跟踪">
 
 </td>
 </tr>
@@ -116,8 +115,8 @@ handoff init
 
 在同一条消息里让 agent 派出多个任务，各自独立执行、独立完成通知。handoff 自动递增 run 序号，互不干扰。
 
-<!-- assets/parallel.jpg — 建议 621 宽 — 同一条消息派发 2~3 个后台任务，各自拿到不同 RESULT= 路径 -->
-<img src="assets/parallel.jpg" width="621" alt="并行派发多任务">
+<!-- docs/assets/parallel.jpg — 建议 621 宽 — 同一条消息派发 2~3 个后台任务，各自拿到不同 RESULT= 路径 -->
+<img src="docs/assets/parallel.jpg" width="621" alt="并行派发多任务">
 
 </details>
 
