@@ -21,6 +21,11 @@ jobs:
       - name: Build
         run: uv build
 
+      - name: Check long description rendering
+        run: |
+          pip install twine
+          twine check dist/*
+
       - name: Publish to PyPI
         run: uv publish --token ${{ secrets.PYPI }}
 
