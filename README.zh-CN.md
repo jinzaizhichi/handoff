@@ -1,5 +1,5 @@
 <div align="center">
-<img src="docs/assets/handoff-hero.jpg" width="100%" alt="hero">
+<img src="https://raw.githubusercontent.com/dazuiba/handoff/main/docs/assets/handoff-hero.jpg" width="100%" alt="hero">
 
 # 有了 **Handoff**，你手里的几个 coding agent 终于可以互相协作了。
 
@@ -126,13 +126,13 @@ backends:
 <td valign="top">
 
 <!-- docs/assets/list-tui.jpg — 建议 ~480 宽 — TUI 列表 + 详情视图，圈出 G/C 快捷键 -->
-<img src="docs/assets/list-tui.jpg" width="100%" alt="handoff list 交互式 TUI">
+<img src="https://raw.githubusercontent.com/dazuiba/handoff/main/docs/assets/list-tui.jpg" width="100%" alt="handoff list 交互式 TUI">
 
 </td>
 <td valign="top">
 
 <!-- docs/assets/tail.jpg — 建议 ~480 宽 — handoff tail 实时输出流 -->
-<img src="docs/assets/tail.jpg" width="100%" alt="handoff tail 实时跟踪">
+<img src="https://raw.githubusercontent.com/dazuiba/handoff/main/docs/assets/tail.jpg" width="100%" alt="handoff tail 实时跟踪">
 
 </td>
 </tr>
@@ -148,7 +148,7 @@ backends:
 可以。在同一条消息里让 agent 派出多个任务，各自独立执行、独立完成通知，互不干扰。
 
 <!-- docs/assets/parallel.jpg — 建议 621 宽 — 同一条消息派发 2~3 个后台任务，各自拿到不同 RESULT= 路径 -->
-<img src="docs/assets/parallel.jpg" width="621" alt="并行派发多任务">
+<img src="https://raw.githubusercontent.com/dazuiba/handoff/main/docs/assets/parallel.jpg" width="621" alt="并行派发多任务">
 
 </details>
 

@@ -1,5 +1,5 @@
 <div align="center">
-<img src="docs/assets/handoff-hero.jpg" width="100%" alt="hero">
+<img src="https://raw.githubusercontent.com/dazuiba/handoff/main/docs/assets/handoff-hero.jpg" width="100%" alt="hero">
 
 # With **Handoff**, your coding agents can finally work together.
 
@@ -125,13 +125,13 @@ Dispatching and resuming are the AI's job (`handoff run` / `handoff resume` unde
 <td valign="top">
 
 <!-- docs/assets/list-tui.jpg — ~480px wide — TUI list + detail view, highlight G/C shortcuts -->
-<img src="docs/assets/list-tui.jpg" width="100%" alt="handoff list interactive TUI">
+<img src="https://raw.githubusercontent.com/dazuiba/handoff/main/docs/assets/list-tui.jpg" width="100%" alt="handoff list interactive TUI">
 
 </td>
 <td valign="top">
 
 <!-- docs/assets/tail.jpg — ~480px wide — handoff tail live stream -->
-<img src="docs/assets/tail.jpg" width="100%" alt="handoff tail live follow">
+<img src="https://raw.githubusercontent.com/dazuiba/handoff/main/docs/assets/tail.jpg" width="100%" alt="handoff tail live follow">
 
 </td>
 </tr>
@@ -147,7 +147,7 @@ Dispatching and resuming are the AI's job (`handoff run` / `handoff resume` unde
 Yes. Have your agent send off several tasks in one message. Each runs on its own and reports back on its own — they never get in each other's way.
 
 <!-- docs/assets/parallel.jpg — ~621px wide — 2–3 background tasks from one message, each with its own RESULT= path -->
-<img src="docs/assets/parallel.jpg" width="621" alt="Parallel dispatch">
+<img src="https://raw.githubusercontent.com/dazuiba/handoff/main/docs/assets/parallel.jpg" width="621" alt="Parallel dispatch">
 
 </details>
 
