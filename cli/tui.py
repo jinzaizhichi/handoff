@@ -5,12 +5,10 @@ from __future__ import annotations
 from typing import Optional, Callable
 
 from textual.app import App, ComposeResult, InvalidThemeError
-from textual.containers import Container
 from textual.screen import Screen
 from textual.widgets import DataTable, Footer, Static
 from textual.binding import Binding
 from textual.coordinate import Coordinate
-from textual.message import Message
 
 from .config import DEFAULT_DARK_THEME, DEFAULT_LIGHT_THEME, read_tui_theme, write_tui_theme
 from .core import format_run_row, task_paths
@@ -61,9 +59,9 @@ class RunListScreen(Screen):
 
     Key bindings:
       Enter / →   — open detail view for the selected run
-      G           — resume the selected run's session
+      O           — resume the selected run's session
       C           — copy session UUID to clipboard
-      Q / Esc     — quit
+      Q           — quit
     """
 
     BINDINGS = [
@@ -78,6 +76,8 @@ class RunListScreen(Screen):
         rows: list,
         full_cwd: bool = False,
         refresh_fn: Callable[[], list] | None = None,
+        initial_run_id: str | None = None,
+        open_detail_on_mount: bool = False,
         name: str | None = None,
         id: str | None = None,
         classes: str | None = None,
@@ -86,6 +86,8 @@ class RunListScreen(Screen):
         self._full_cwd = full_cwd
         self._result: Optional[str] = None  # "resume:<run_id>" or None
         self._refresh_fn = refresh_fn
+        self._initial_run_id = initial_run_id
+        self._open_detail_on_mount = open_detail_on_mount
         self._fingerprint: str = ""               # change-detection fingerprint
         self._dirty: bool = False                 # data changed while detail view was active
         self._pending_cursor_run_id: str | None = None  # cursor-restore target
@@ -123,10 +125,17 @@ class RunListScreen(Screen):
 
         table.focus()
 
+        if self._initial_run_id:
+            self._pending_cursor_run_id = self._initial_run_id
+            self._restore_cursor()
+
         # Start periodic DB polling for auto-refresh
         if self._refresh_fn is not None:
             self._fingerprint = self._compute_fingerprint(self._rows)
             self.set_interval(POLL_INTERVAL, self._poll_refresh)
+
+        if self._open_detail_on_mount:
+            self._open_detail()
 
     def _selected_row(self):
         """Return the sqlite3.Row for the currently selected table row."""
@@ -340,10 +349,14 @@ class RunListApp(HandoffTuiApp):
         full_cwd: bool = False,
         refresh_fn: Callable[[], list] | None = None,
         theme_name: str | None = None,
+        initial_run_id: str | None = None,
+        open_detail_on_mount: bool = False,
     ):
         self._rows = rows
         self._full_cwd = full_cwd
         self._refresh_fn = refresh_fn
+        self._initial_run_id = initial_run_id
+        self._open_detail_on_mount = open_detail_on_mount
         self._action_result: Optional[str] = None
         super().__init__(theme_name=theme_name)
 
@@ -352,7 +365,13 @@ class RunListApp(HandoffTuiApp):
         return self._action_result
 
     def on_mount(self) -> None:
-        screen = RunListScreen(self._rows, self._full_cwd, refresh_fn=self._refresh_fn)
+        screen = RunListScreen(
+            self._rows,
+            self._full_cwd,
+            refresh_fn=self._refresh_fn,
+            initial_run_id=self._initial_run_id,
+            open_detail_on_mount=self._open_detail_on_mount,
+        )
         self.push_screen(screen)
         self.apply_initial_theme()
 

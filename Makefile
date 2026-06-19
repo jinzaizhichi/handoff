@@ -1,10 +1,29 @@
-.PHONY: render skills
+.PHONY: help render skills use_local use_latest release
+
+help:  ## Show this help message
+	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage: make \033[36m<target>\033[0m\n\n"} /^[a-zA-Z0-9_\/-]+:.*?## / {printf "  \033[36m%-28s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@echo ''
+
+.DEFAULT_GOAL := help
+
+TOOL_PACKAGE := handoff-cli
 
 render:  ## Preview PyPI long description rendering
 	pip install -q "readme_renderer[md]" 2>/dev/null
 	python -m readme_renderer README.md > /tmp/handoff-pypi-preview.html
 	@echo "✅  /tmp/handoff-pypi-preview.html  ($(shell wc -c < /tmp/handoff-pypi-preview.html | tr -d ' ') bytes)"
 	open /tmp/handoff-pypi-preview.html
+
+use_local:  ## Install the local checkout as the global `handoff` tool
+	uv tool install --force -e .
+	handoff --version
+
+use_latest:  ## Install the latest published handoff-cli as the global `handoff` tool
+	uv tool install --force --upgrade $(TOOL_PACKAGE)
+	handoff --version
+
+release:  ## Bump version in pyproject.toml, build/check, commit, and tag locally
+	./scripts/release.sh "$(VERSION)"
 
 # ── skill 文档同步 ──────────────────────────────────────────────────
 # handoff-ds/SKILL.md 是主文档（master），只改它。

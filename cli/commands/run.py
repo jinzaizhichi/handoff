@@ -272,8 +272,8 @@ def _execute(
         # thread.started event and is persisted by execute_run
         session_id = None
 
-    print(f"RESULT={result_path}")
-    print(f"RESULT={result_path}", file=sys.stderr)
+    print(f"RUN_ID={run_id}", flush=True)
+    print(f"RUN_ID={run_id}", file=sys.stderr, flush=True)
 
     ts = datetime.datetime.now().strftime("%H:%M:%S")
     label = "resume" if resume_session_id else "start"

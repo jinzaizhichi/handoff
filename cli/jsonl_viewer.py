@@ -1,11 +1,7 @@
-"""Shared JSONL viewer for handoff list (detail) and tail commands.
+"""Shared JSONL viewer for handoff list detail screens.
 
 Uses Textual to render Claude stream-json output: compact progress log
 (RichLog), input prompt (Markdown), and final result (Markdown).
-
-Modes:
-  - static:  list detail page; Escape dismisses back to list
-  - follow:  `handoff tail`; Escape / Q exit the app
 """
 
 from __future__ import annotations
@@ -18,7 +14,7 @@ from typing import Optional
 from markdown_it import MarkdownIt
 from rich.text import Text
 from textual import work
-from textual.app import App, ComposeResult
+from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import (
     Footer,
@@ -30,9 +26,7 @@ from textual.widgets import (
 )
 from textual.containers import VerticalScroll
 from textual.binding import Binding
-from .config import read_tui_theme
 from .jsonl_parser import ParsedEvent, format_event_as_rich, read_events
-from .tui import HandoffTuiApp
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -60,7 +54,7 @@ def _markdown_parser_factory() -> MarkdownIt:
 
 
 class JsonlViewerScreen(Screen):
-    """Shared JSONL viewer screen for handoff list (detail) and tail.
+    """Shared JSONL viewer screen for handoff list detail.
 
     Layout:
       - RunInfoBar (top bar)
@@ -98,7 +92,6 @@ class JsonlViewerScreen(Screen):
         out_path: str,
         result_path: str,
         run_info: dict,
-        mode: str = "static",
         name: str | None = None,
         id: str | None = None,
         classes: str | None = None,
@@ -109,7 +102,6 @@ class JsonlViewerScreen(Screen):
         self._o_path = out_path
         self._r_path = result_path
         self._r_info = run_info
-        self._mode = mode
         self._last_ts = ""
         self._fpos = 0
         self._out_fpos = 0
@@ -409,10 +401,7 @@ class JsonlViewerScreen(Screen):
 
     def action_back(self) -> None:
         self._keep_polling = False
-        if self._mode == "static":
-            self.dismiss()
-        else:
-            self.app.exit()
+        self.dismiss()
 
     def action_go_resume(self) -> None:
         self._keep_polling = False
@@ -507,61 +496,6 @@ class JsonlViewerScreen(Screen):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# Tail entry point
-# ═══════════════════════════════════════════════════════════════════════════════
-
-class JsonlTailApp(HandoffTuiApp):
-    """Standalone Textual app for `handoff tail`."""
-
-    TITLE = "handoff tail"
-
-    def __init__(
-        self,
-        jsonl_path: str,
-        prompt_path: str,
-        out_path: str,
-        result_path: str,
-        run_info: dict,
-        theme_name: str | None = None,
-    ):
-        self._a_jl = jsonl_path
-        self._a_pp = prompt_path
-        self._a_op = out_path
-        self._a_rp = result_path
-        self._a_ri = run_info
-        super().__init__(theme_name=theme_name)
-
-    def on_mount(self) -> None:
-        self.push_screen(JsonlViewerScreen(
-            jsonl_path=self._a_jl,
-            prompt_path=self._a_pp,
-            out_path=self._a_op,
-            result_path=self._a_rp,
-            run_info=self._a_ri,
-            mode="follow",
-        ))
-        self.apply_initial_theme()
-
-
-def run_tail(
-    jsonl_path: str,
-    prompt_path: str,
-    result_path: str,
-    run_info: dict,
-    theme_name: str | None = None,
-) -> None:
-    """Entry point for `handoff tail`."""
-    out_path = run_info.get("out_path", "")
-    JsonlTailApp(
-        jsonl_path,
-        prompt_path,
-        out_path,
-        result_path,
-        run_info,
-        theme_name=theme_name,
-    ).run(mouse=False)
-
-
 def make_viewer_screen(
     jsonl_path: str,
     prompt_path: str,
@@ -569,12 +503,11 @@ def make_viewer_screen(
     result_path: str,
     run_info: dict,
 ) -> JsonlViewerScreen:
-    """Create a viewer screen for embedding in another Textual app (list detail)."""
+    """Create a viewer screen for embedding in the list TUI."""
     return JsonlViewerScreen(
         jsonl_path=jsonl_path,
         prompt_path=prompt_path,
         out_path=out_path,
         result_path=result_path,
         run_info=run_info,
-        mode="static",
     )

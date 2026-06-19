@@ -13,18 +13,20 @@ def usage(config=None):
   handoff env
   handoff init      [-y|--yes]
   handoff new       --backend <name> [--slug <slug>] [--write]
-  handoff list|ls   [--uuid] [--cwd]
+  handoff list|ls   [<run-id|seq>] [--uuid] [--cwd] [--follow]
   handoff run       [--backend <name>] [--cwd <dir>] [--slug <slug>] [--pro] [--verbose] (<input-file|-> | --text <prompt...>)
   handoff resume    [<run-id|seq>] [--slug <slug>] [--pro] [--cwd <dir>] [--verbose] [(<input-file|-> | --text <prompt...>)]
   handoff tail [<run-id|seq>]
 
   handoff env              — print config / data paths (works even with broken config)
   handoff new              — pre-allocate a run_id; prints .prompt.md path to stdout
-  handoff list             — browse and inspect your past sessions (`ls` alias supported)
+  handoff list             — browse your past sessions (`ls` alias supported)
+  handoff list <seq> --follow
+                          — jump straight into one run's live detail view
   handoff run --text hi    — quick smoke-test / debug your config.yaml
   handoff resume <seq>     — reopen a past conversation (interactive)
   handoff resume <seq> -   — dispatch a follow-up task to that conversation (heredoc/--text)
-  handoff tail             — live-tail a run's stream
+  handoff tail             — alias for `handoff list --follow` on the latest run
 
 Run ids: <mmdd>-<backend2>-<SEQ_CODE>-<slug>  (e.g. 0611-ds-03-fix-auth)
 --cwd defaults to the current directory of the calling process.
